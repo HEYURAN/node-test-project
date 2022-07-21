@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>{{ title }}</title>
+    <style>
+      html,
+      body,
+      #root {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 0;
+      }
+
+      .bg_wrap {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: hidden;
+      }
+
+      .bg_wrap img {
+        width: 100%;
+      }
+
+      .video_wrap {
+        position: absolute;
+        z-index: 2;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      #video {
+        position: absolute;
+        z-index: 2;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .video_fill {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root">
+      <!-- bg -->
+      <div class="bg_wrap">
+        <img src="" />
+      </div>
+
+      <!-- video // 播放器的方向， landscape横屏，portraint竖屏，默认值为竖屏 -->
+      <div class="video_wrap">
+        <video
+          src="http://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+          id="video"
+          controls="true"
+          poster="images.jpg"
+          preload="auto"
+          webkit-playsinline="true"
+          playsinline="true"
+          x-webkit-airplay="allow"
+          x5-video-player-type="h5"
+          x5-video-player-fullscreen="true"
+          x5-video-orientation="landscape"
+          style="object-fit: fill"
+        >
+          Sorry, your browser doesn't support embedded videos.
+        </video>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        let clientW = screen.availHeight || document.body.clientWidth;
+        let clientH = screen.availWeight || document.body.clientHeight;
+        let videoW = null , videoH = null ;
+        const videoBase64 = `http://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4`;
+        function initClient(){
+            clientW = screen.availHeight || document.body.clientWidth;
+            clientH = screen.availWeight || document.body.clientHeight;
+
+        }
+        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", initClient, false);
+
+
+        function init() {
+          if(!videoW || !videoH){
+
+          }
+          // 判断当前设备是横屏还是竖屏
+
+          setVideoPos(videoBase64);
+        }
+
+        function $(id){
+          return document.getElementById(id)
+        }
+
+        function gcd(a, b) {
+          if (a < b) {
+            let temp = a;
+            a = b;
+            b = temp;
+          }
+          while (b != 0) {
+            let remainder = a % b; // 余数
+            a = b;
+            b = remainder;
+          }
+          return a;
+        }
+
+        function setVideoPos(videoSrc) {
+          if (!videoSrc) return;
+          const _doc_video = $('video')
+          const video = document.createElement('video');
+          video.src = videoSrc;
+          video.addEventListener('canplay', function (e) {
+            const scale = 0.5625；
+            const videoWidth = e.target.videoWidth;
+            const videoHeight = e.target.videoHeight;
+            const g = gcd(videoWidth , videoHeight)
+            if(videoWidth/videoHeight === scale){
+              // 竖屏 16：9
+              _doc_video.classN
+            }
+            _doc_video.src = videoSrc;
+          });
+        }
+
+        init();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,24 +1,17 @@
 <!doctype html>
 <html>
-<style>
-  html , body{
-    margin: 0 ;
-    padding : 0;
-  }
-  .font_16 {
-    font-size: 16px;
-  }
-
-   .font_26 {
-    font-size: 16px;
-  }
-</style>
-<head>
-  <meta charset="utf-8">
-  <title>
-  {{ title }}
-  </title>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <style>
+        html , body{
+          margin: 0 ;
+          padding : 0;
+        }
+      
+  </style>
   </head>
+
   <body>
       {{ a }}<div>
       <p class="font_16">111111</p>
@@ -27,6 +20,3 @@
   </body>
 </html>
 
-<script>
-  const a = '1222222';
-</script>
